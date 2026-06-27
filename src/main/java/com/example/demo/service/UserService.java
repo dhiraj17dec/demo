@@ -3,6 +3,9 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.UserDto;
@@ -10,23 +13,32 @@ import com.example.demo.entity.User;
 import com.example.demo.exceptions.UserNotFoundException;
 import com.example.demo.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 public class UserService {
 
-	public final UserRepository repo;
+	private final UserRepository repo;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	UserService(UserRepository repo) {
 		this.repo = repo;
 	}
-	
+
     public User createUser(UserDto dto) { 
+    	logger.info("Saving user {}", dto.getEmail());
     	User user = new User(dto.getName(),dto.getEmail());
-    	return repo.save(user); 
+    	user = repo.save(user); 
+    	logger.info("User saved successfully");
+    	return user;
     }
 
 	public User findUser(Long id) throws UserNotFoundException{
+		logger.info("Fetching user {}", id);
 		Optional<User> user = repo.findById(id);
 		if(!user.isPresent()) throw new UserNotFoundException("User not found with id: " + id);
+		logger.info("User Found name : {} email: {}", user.get().getName(), user.get().getEmail());
 		return user.get();
 	}
 

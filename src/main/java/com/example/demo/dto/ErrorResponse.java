@@ -1,28 +1,43 @@
 package com.example.demo.dto;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
+import lombok.Data;
+
 public class ErrorResponse {
 
-	private String statusCode;
-	private String message;
-	
-	public ErrorResponse(String statusCode, String message) {
+	private LocalDateTime timestamp;
+	private String status;
+	private String error;
+	private Map<String,String> errors;
+	public ErrorResponse() {
 		super();
-		this.statusCode = statusCode;
-		this.message = message;
+		// TODO Auto-generated constructor stub
 	}
-	
-	public String getStatusCode() {
-		return statusCode;
+	public LocalDateTime getTimestamp() {
+		return timestamp;
 	}
-	public void setStatusCode(String statusCode) {
-		this.statusCode = statusCode;
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
-	public String getMessage() {
-		return message;
+	public String getStatus() {
+		return status;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+	public void setErrors(Map<String, String> errors) {
+		this.errors = errors;
+	}
 	
 }

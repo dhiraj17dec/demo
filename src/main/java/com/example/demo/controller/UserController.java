@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +15,8 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.entity.User;
 import com.example.demo.exceptions.UserNotFoundException;
 import com.example.demo.service.UserService;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class UserController {
@@ -35,7 +36,7 @@ public class UserController {
     }
     
     @PostMapping("/user")
-    public User user(@Validated @RequestBody UserDto userDto) { 
+    public User user(@Valid @RequestBody UserDto userDto) { 
     	return service.createUser(userDto); 
     }
     

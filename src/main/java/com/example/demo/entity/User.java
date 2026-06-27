@@ -6,6 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name = "users")
@@ -14,21 +20,10 @@ public class User {
 	Long id; 
 	
 	@Column(name = "name") 
-	@Nonnull
 	String name; 
 	
 	@Column(name = "email")
 	String email;
-
-	public User() {
-		super();
-	}
-
-	public User(String name, String email) {
-		super();
-		this.name = name;
-		this.email = email;
-	}
 
 	public Long getId() {
 		return id;
@@ -52,7 +47,18 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	} 
+	}
+
+	public User(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }
