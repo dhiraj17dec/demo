@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserFilterDto;
 import com.example.demo.dto.UserSummary;
 import com.example.demo.entity.User;
 import com.example.demo.exceptions.UserNotFoundException;
@@ -77,6 +78,11 @@ public class UserController {
     @GetMapping("/users/allSummary")
     public List<UserSummary> getAllUsersSummary() throws UserNotFoundException{
         return service.getUserSummary();
+    }
+    
+    @PostMapping("/users/specific")
+    public List<User> search(@RequestBody UserFilterDto filter){
+        return service.search(filter);
     }
     
 }
